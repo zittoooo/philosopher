@@ -1,0 +1,32 @@
+#ifndef PHLIO_ONE
+# define PHILO_ONE
+
+# include <pthread.h>
+
+typedef struct      s_table
+{
+	// 인자로 들어오는 순서대로
+	int				num_philo;  // 철학자 수 = 포크 수
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	int				num_eat;  
+
+	unsigned long	base_time;	// 기준 시간
+	int				eat;		// 다 먹은 철학자 수
+	int				dead;		// 철학자가 한명이라도 죽으면 1
+	pthread_mutex_t	*fork;		// 철학자의 수만큼 만들 포크 뮤텍스
+	pthread_mutex_t	m_msg;		// 메세지가 꼬이지 않아야 해서 필요한 뮤텍스
+}					t_table;
+
+typedef struct		s_philo
+{
+	int				nbr;		//철학자 번호
+	int				fork1;
+	int				fork2;
+	int				eat;		// 철학자가 먹은 횟수
+	unsigned long	last_eat;	// 철학자가 마지막으로 밥 먹은 시간
+	pthread_t		tid;		// 철학자 쓰레드 아이디
+}					t_philos;
+
+#endif
