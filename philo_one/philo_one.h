@@ -1,4 +1,4 @@
-#ifndef PHLIO_ONE
+#ifndef PHILO_ONE
 # define PHILO_ONE
 
 # include <pthread.h>
@@ -10,9 +10,9 @@ typedef struct      s_table
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
-	int				num_eat;  
+	int				must_eat;
 
-	unsigned long	base_time;	// 기준 시간
+	unsigned long	base_time;	// 기준 시간 /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
 	int				eat;		// 다 먹은 철학자 수
 	int				dead;		// 철학자가 한명이라도 죽으면 1
 	pthread_mutex_t	*fork;		// 철학자의 수만큼 만들 포크 뮤텍스
@@ -25,8 +25,12 @@ typedef struct		s_philo
 	int				fork1;
 	int				fork2;
 	int				eat;		// 철학자가 먹은 횟수
-	unsigned long	last_eat;	// 철학자가 마지막으로 밥 먹은 시간
+	unsigned long	last_eat;	// 철학자가 마지막으로 밥 먹은 시간  /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
 	pthread_t		tid;		// 철학자 쓰레드 아이디
 }					t_philos;
+
+t_philos     	*philos();
+t_table			*table();
+int			ft_atoi(char *str);
 
 #endif
