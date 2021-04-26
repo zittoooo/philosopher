@@ -2,6 +2,9 @@
 # define PHILO_ONE
 
 # include <pthread.h>
+#include <sys/time.h>
+# include <stdio.h>
+
 
 typedef struct      s_table
 {
