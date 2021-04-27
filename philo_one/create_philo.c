@@ -2,22 +2,23 @@
 
 void	*watch(void	*phi)
 {
-	unsigned long cur;
+	long cur;
 	t_philos *philo;
 
 	philo = (t_philos *)phi;
 	while (1)
 	{
-		if (table()->dead)
-			break;
 		cur = get_time();
-		if ((cur - philo->last_eat) > table()->time_to_die)
+		if ((cur - philo->last_eat) > (long)table()->time_to_die)
 		{
+			printf("%lu %ld\n", cur,  philo->last_eat);
+			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
 			table()->dead = 1;
+			msg(phi, DEAD, get_time() - table()->base_time);
 			break ;
 		}
-		printf("im monitor\n");
-		break;
+		// printf("im monitor\n");
+		// break;
 	}
 	return (NULL);
 }
@@ -28,19 +29,20 @@ void	*run(void *phi)
 	t_philos *philo;
 
 	philo = (t_philos *)phi;
-
+	if (philo->nbr % 2)
+		usleep(80);
 	pthread_create(&monitor, NULL, watch, philo);
-	while (1)
+	while (!table()->dead)
 	{
-		// if (eat())
-		// 	break ;
-		// else if (sleep())
-		// 	break ;
-		// else if (think())
-		// 	break ;
-		
+		if (eat(philo))
+			break ;
+		else if (sleep_philo(philo))
+			break ;
+		else if (think(philo))
+			break ;	
 	}
 	pthread_join(monitor, NULL);
+	return (NULL);
 }
 
 void    create_philo()
@@ -49,7 +51,6 @@ void    create_philo()
 
 	i = 0;
 	t_philos *philo;
-
 	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
 	 return ;
 	while (i < table()->num_philo)

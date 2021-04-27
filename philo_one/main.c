@@ -50,4 +50,5 @@ int		main(int argc, char *argv[])
 		return (printf("input Error"));
 	init_mutex();
 	create_philo();
+	// clean();
 }

@@ -5,7 +5,13 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <stdio.h>
+# include <unistd.h>
 
+# define EAT 1
+# define TAKEN 2
+# define SLEEP 3
+# define THINK 4
+# define DEAD 5
 
 typedef struct      s_table
 {
@@ -29,7 +35,7 @@ typedef struct		s_philo
 	int				fork1;
 	int				fork2;
 	int				eat;		// 철학자가 먹은 횟수
-	unsigned long	last_eat;	// 철학자가 마지막으로 밥 먹은 시간  /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
+	long	last_eat;	// 철학자가 마지막으로 밥 먹은 시간  /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
 	pthread_t		tid;		// 철학자 쓰레드 아이디
 }					t_philos;
 
@@ -44,4 +50,11 @@ unsigned long	get_time();
 void    create_philo();
 void	*run(void *phi);
 void	*watch(void	*phi);
+
+void	msg(t_philos *philo, int status, unsigned long timestamp);
+int		eat(t_philos *philo);
+int		sleep_philo(t_philos *philo);
+void	philo_usleep(t_philos *philo, unsigned long sleep);
+int		think(t_philos *philo);
+
 #endif
