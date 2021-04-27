@@ -1,7 +1,7 @@
 #include "philo_one.h"
 
 
-unsigned long	start_time()
+unsigned long	get_time()
 {
 	struct timeval mytime;
 
@@ -23,7 +23,7 @@ int		parse(char	*argv[])
 		table()->must_eat = ft_atoi(argv[5]);
 	else
 		table()->must_eat = -1;
-	table()->base_time = start_time();
+	table()->base_time = get_time();
 	table()->eat = 0;
 	table()->dead = 0;
 	return (0);
@@ -34,12 +34,14 @@ void	init_mutex()
 	int i;
 
 	i = 0;
-	table()->fork = malloc(sizeof(pthread_mutex_t) * table()->num_philo);
+	if (!(table()->fork = malloc(sizeof(pthread_mutex_t) * table()->num_philo)))
+		return ;
 	while (i < table()->num_philo)
 	{
 		pthread_mutex_init(&table()->fork[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&table()->m_msg, NULL);
 }
 
 int		main(int argc, char *argv[])

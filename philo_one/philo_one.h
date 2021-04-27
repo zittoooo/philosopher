@@ -2,7 +2,8 @@
 # define PHILO_ONE
 
 # include <pthread.h>
-#include <sys/time.h>
+# include <stdlib.h>
+# include <sys/time.h>
 # include <stdio.h>
 
 
@@ -36,4 +37,11 @@ t_philos     	*philos();
 t_table			*table();
 int			ft_atoi(char *str);
 
+
+unsigned long	get_time();
+
+
+void    create_philo();
+void	*run(void *phi);
+void	*watch(void	*phi);
 #endif
