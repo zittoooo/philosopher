@@ -3,6 +3,11 @@
 void	msg(t_philos *philo, int status, unsigned long timestamp)
 {
 	pthread_mutex_lock(&table()->m_msg);
+	if (table()->dead)
+	{
+		pthread_mutex_unlock(&table()->m_msg);
+		return ;
+	}
 	if (status == EAT)
 	{
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
@@ -50,18 +55,19 @@ int		eat(t_philos *philo)
 int		sleep_philo(t_philos *philo)
 {
 	msg(philo, SLEEP, get_time() - table()->base_time);
-	philo_usleep(philo, table()->time_to_sleep);
+	// philo_usleep(philo, table()->time_to_sleep);
+	usleep(table()->time_to_sleep * 1000);
 	return (0);
 }
 
-void	philo_usleep(t_philos *philo, unsigned long sleep)
-{
-	unsigned long cur;
+// void	philo_usleep(t_philos *philo, unsigned long sleep)
+// {
+// 	unsigned long cur;
 
-	cur = get_time();
-	while (get_time() - cur <= sleep && !table()->dead)
-		usleep(1);
-}
+// 	cur = get_time();
+// 	while (get_time() - cur <= sleep && !table()->dead)
+// 		usleep(1);
+// }
 
 int		think(t_philos *philo)
 {

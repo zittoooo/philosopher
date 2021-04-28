@@ -8,6 +8,8 @@ void	*watch(void	*phi)
 	philo = (t_philos *)phi;
 	while (1)
 	{
+		if (table()->eat == table()->must_eat)
+			break ;
 		cur = get_time();
 		if ((cur - philo->last_eat) > (long)table()->time_to_die)
 		{
@@ -17,8 +19,6 @@ void	*watch(void	*phi)
 			msg(phi, DEAD, get_time() - table()->base_time);
 			break ;
 		}
-		// printf("im monitor\n");
-		// break;
 	}
 	return (NULL);
 }
