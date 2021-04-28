@@ -54,23 +54,21 @@ int		eat(t_philos *philo)
 
 int		sleep_philo(t_philos *philo)
 {
+	int cur;
+
+	if (table()->dead)
+		return (1);
 	msg(philo, SLEEP, get_time() - table()->base_time);
-	// philo_usleep(philo, table()->time_to_sleep);
-	usleep(table()->time_to_sleep * 1000);
+	cur = get_time();
+	while (get_time() - cur <= table()->time_to_sleep && !table()->dead)
+		usleep(1);
 	return (0);
 }
 
-// void	philo_usleep(t_philos *philo, unsigned long sleep)
-// {
-// 	unsigned long cur;
-
-// 	cur = get_time();
-// 	while (get_time() - cur <= sleep && !table()->dead)
-// 		usleep(1);
-// }
-
 int		think(t_philos *philo)
 {
+	if (table()->dead)
+		return (1);
 	msg(philo, THINK, get_time() - table()->base_time);
 	return (0);
 }

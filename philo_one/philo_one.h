@@ -54,7 +54,6 @@ void	*watch(void	*phi);
 void	msg(t_philos *philo, int status, unsigned long timestamp);
 int		eat(t_philos *philo);
 int		sleep_philo(t_philos *philo);
-// void	philo_usleep(t_philos *philo, unsigned long sleep);
 int		think(t_philos *philo);
 
 #endif
