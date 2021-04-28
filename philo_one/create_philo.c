@@ -6,17 +6,17 @@ void	*watch(void	*phi)
 	t_philos *philo;
 
 	philo = (t_philos *)phi;
-	while (1)
+	while (!table()->dead)
 	{
 		if (table()->eat == table()->must_eat)
 			break ;
 		cur = get_time();
-		if ((cur - philo->last_eat) > (long)table()->time_to_die)
+		if ((cur - philo->last_eat) > table()->time_to_die)
 		{
-			printf("%lu %ld\n", cur,  philo->last_eat);
+			// printf("%lu %ld\n", cur,  philo->last_eat);
 			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
-			table()->dead = 1;
 			msg(phi, DEAD, get_time() - table()->base_time);
+			table()->dead = 1;
 			break ;
 		}
 	}

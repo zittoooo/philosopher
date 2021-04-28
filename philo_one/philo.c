@@ -8,7 +8,7 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 		pthread_mutex_unlock(&table()->m_msg);
 		return ;
 	}
-	if (status == EAT)
+	else if (status == EAT)
 	{
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
 	}
@@ -26,8 +26,8 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 	}
 	else if (status == DEAD)
 	{
-		// table()->dead = 1;
 		printf("%ld %d died\n", timestamp, philo->nbr);
+		table()->dead = 1;
 	}
 	pthread_mutex_unlock(&table()->m_msg);
 }
