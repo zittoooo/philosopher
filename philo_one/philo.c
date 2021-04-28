@@ -9,21 +9,13 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 		return ;
 	}
 	if (status == EAT)
-	{
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
-	}
 	else if (status == TAKEN)
-	{
 		printf("%ld %d has taken a fork\n", timestamp, philo->nbr);
-	}
 	else if (status == SLEEP)
-	{
 		printf("%ld %d is sleeping\n", timestamp, philo->nbr);
-	}
 	else if (status == THINK)
-	{
 		printf("%ld %d is thinking\n", timestamp, philo->nbr);
-	}
 	else if (status == DEAD)
 	{
 		printf("%ld %d died\n", timestamp, philo->nbr);
@@ -38,7 +30,7 @@ int		eat(t_philos *philo)
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	pthread_mutex_lock(&table()->fork[philo->fork2]);
 	msg(philo, TAKEN, get_time() - table()->base_time);
-	msg(philo, EAT, get_time() - table()->base_time);	
+	msg(philo, EAT, get_time() - table()->base_time);
 	philo->last_eat = get_time();
 	usleep(table()->time_to_eat * 1000);
 	pthread_mutex_unlock(&table()->fork[philo->fork1]);

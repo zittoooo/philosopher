@@ -1,15 +1,14 @@
 #include "philo_one.h"
 
-
-int		get_time()
+int		get_time(void)
 {
 	struct timeval mytime;
 
 	gettimeofday(&mytime, NULL);
-	return (mytime.tv_sec * 1000 + mytime.tv_usec/1000);
+	return (mytime.tv_sec * 1000 + mytime.tv_usec / 1000);
 }
 
-int		parse(char	*argv[])
+int		parse(char *argv[])
 {
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0 ||
 		ft_atoi(argv[3]) <= 0 || ft_atoi(argv[4]) <= 0 ||
@@ -29,7 +28,7 @@ int		parse(char	*argv[])
 	return (0);
 }
 
-void	init_mutex()
+void	init_mutex(void)
 {
 	int i;
 

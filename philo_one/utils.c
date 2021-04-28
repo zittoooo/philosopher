@@ -1,13 +1,13 @@
 #include "philo_one.h"
 
-t_philos     *philos()
+t_philos	*philos(void)
 {
 	static	t_philos philo;
 
 	return (&philo);
 }
 
-t_table		*table()
+t_table		*table(void)
 {
 	static	t_table	table;
 
@@ -23,7 +23,6 @@ int			ft_atoi(char *str)
 	i = 0;
 	ret = 0;
 	sign = 1;
-
 	if (str[i] == '-' && i++)
 		sign = -1;
 	while (str[i])

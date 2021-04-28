@@ -1,9 +1,9 @@
 #include "philo_one.h"
 
-void	*watch(void	*phi)
+void	*watch(void *phi)
 {
-	long cur;
-	t_philos *philo;
+	int			cur;
+	t_philos	*philo;
 
 	philo = (t_philos *)phi;
 	while (!table()->dead)
@@ -25,8 +25,8 @@ void	*watch(void	*phi)
 
 void	*run(void *phi)
 {
-	pthread_t monitor;
-	t_philos *philo;
+	pthread_t	monitor;
+	t_philos	*philo;
 
 	philo = (t_philos *)phi;
 	if (philo->nbr % 2)
@@ -39,20 +39,20 @@ void	*run(void *phi)
 		else if (sleep_philo(philo))
 			break ;
 		else if (think(philo))
-			break ;	
+			break ;
 	}
 	pthread_join(monitor, NULL);
 	return (NULL);
 }
 
-void    create_philo()
+void	create_philo(void)
 {
-	int i;
+	int			i;
+	t_philos	*philo;
 
 	i = 0;
-	t_philos *philo;
 	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
-	 return ;
+		return ;
 	while (i < table()->num_philo)
 	{
 		philo[i].nbr = i + 1;
