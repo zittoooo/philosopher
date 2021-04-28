@@ -50,10 +50,11 @@ void	create_philo(void)
 	int			i;
 	t_philos	*philo;
 
-	i = 0;
+	i = -1;
+	philo = philos();
 	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
 		return ;
-	while (i < table()->num_philo)
+	while (++i < table()->num_philo)
 	{
 		philo[i].nbr = i + 1;
 		if (i == 0)
@@ -64,9 +65,10 @@ void	create_philo(void)
 		philo[i].eat = 0;
 		philo[i].last_eat = get_time();
 		pthread_create(&philo[i].tid, NULL, run, &philo[i]);
-		i++;
 	}
 	i = -1;
 	while (++i < table()->num_philo)
 		pthread_join(philo[i].tid, NULL);
+	free(philo);
+	philo = 0;
 }

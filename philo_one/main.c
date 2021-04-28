@@ -49,5 +49,17 @@ int		main(int argc, char *argv[])
 		return (printf("input Error"));
 	init_mutex();
 	create_philo();
-	// clean();
+	clean();
+}
+
+void	clean(void)
+{
+	int	i;
+
+	i = -1;
+	while (++i < table()->num_philo)
+		pthread_mutex_destroy(&table()->fork[i]);
+	pthread_mutex_destroy(&table()->m_msg);
+	free(table()->fork);
+	table()->fork = 0;
 }

@@ -36,15 +36,31 @@ typedef struct		s_philo
 	int				eat;		// 철학자가 먹은 횟수
 	int				last_eat;	// 철학자가 마지막으로 밥 먹은 시간  /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
 	pthread_t		tid;		// 철학자 쓰레드 아이디
-}					t_philos;
+}					t_philos;   // sizeof == 32
 
+/*
+** main.c
+*/
+int					get_time();
+void				clean(void);
+
+/*
+** create_philo.c
+*/
+void				create_philo(void);
+void				*run(void *phi);
+void				*watch(void	*phi);
+
+/*
+** utils.c
+*/
 t_philos			*philos();
 t_table				*table();
 int					ft_atoi(char *str);
-int					get_time();
-void				create_philo();
-void				*run(void *phi);
-void				*watch(void	*phi);
+
+/*
+** philo.c
+*/
 void				msg(t_philos *philo, int status, unsigned long timestamp);
 int					eat(t_philos *philo);
 int					sleep_philo(t_philos *philo);
