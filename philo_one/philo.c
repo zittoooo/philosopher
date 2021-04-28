@@ -39,9 +39,9 @@ int		eat(t_philos *philo)
 	if (philo->eat == table()->must_eat)
 	{
 		table()->eat++;
-		return (1);  // 먹어야 하는 만큼 먹었으면 스레드 끝내기
+		return (END);  // 먹어야 하는 만큼 먹었으면 스레드 끝내기
 	}
-	return (0);
+	return (ALIVE);
 }
 
 int		sleep_philo(t_philos *philo)
@@ -49,18 +49,18 @@ int		sleep_philo(t_philos *philo)
 	int cur;
 
 	if (table()->dead)
-		return (1);
+		return (END);
 	msg(philo, SLEEP, get_time() - table()->base_time);
 	cur = get_time();
 	while (get_time() - cur <= table()->time_to_sleep && !table()->dead)
 		usleep(1);
-	return (0);
+	return (ALIVE);
 }
 
 int		think(t_philos *philo)
 {
 	if (table()->dead)
-		return (1);
+		return (END);
 	msg(philo, THINK, get_time() - table()->base_time);
-	return (0);
+	return (ALIVE);
 }

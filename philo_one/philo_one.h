@@ -13,6 +13,9 @@
 # define THINK 4
 # define DEAD 5
 
+# define END 1
+# define ALIVE 0
+
 typedef struct		s_table
 {
 	int				num_philo;  // 철학자 수 = 포크 수
