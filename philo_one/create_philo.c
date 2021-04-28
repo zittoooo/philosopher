@@ -8,7 +8,7 @@ void	*watch(void *phi)
 	philo = (t_philos *)phi;
 	while (!table()->dead)
 	{
-		if (table()->eat == table()->must_eat)
+		if (philo->eat == table()->must_eat)
 			break ;
 		cur = get_time();
 		if ((cur - philo->last_eat) > table()->time_to_die)

@@ -23,8 +23,11 @@ int			ft_atoi(char *str)
 	i = 0;
 	ret = 0;
 	sign = 1;
-	if (str[i] == '-' && i++)
+	if (str[i] == '-')
+	{
 		sign = -1;
+		i++;
+	}
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')

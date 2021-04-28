@@ -46,7 +46,7 @@ void	init_mutex(void)
 int		main(int argc, char *argv[])
 {
 	if (!(argc == 5 || argc == 6) || parse(argv))
-		return (printf("input Error"));
+		return (printf("input Error\n"));
 	init_mutex();
 	create_philo();
 	clean();
