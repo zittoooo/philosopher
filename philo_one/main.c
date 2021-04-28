@@ -1,7 +1,7 @@
 #include "philo_one.h"
 
 
-unsigned long	get_time()
+int		get_time()
 {
 	struct timeval mytime;
 

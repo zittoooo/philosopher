@@ -8,7 +8,7 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 		pthread_mutex_unlock(&table()->m_msg);
 		return ;
 	}
-	else if (status == EAT)
+	if (status == EAT)
 	{
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
 	}

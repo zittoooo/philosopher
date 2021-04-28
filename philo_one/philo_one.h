@@ -17,12 +17,12 @@ typedef struct      s_table
 {
 	// 인자로 들어오는 순서대로
 	int				num_philo;  // 철학자 수 = 포크 수
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	int				must_eat;
 
-	unsigned long	base_time;	// 기준 시간 /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
+	int				base_time;	// 기준 시간 /* ms 로 바꾸는 시간 단위는 unsigned long 으로 */
 	int				eat;		// 다 먹은 철학자 수
 	int				dead;		// 철학자가 한명이라도 죽으면 1
 	pthread_mutex_t	*fork;		// 철학자의 수만큼 만들 포크 뮤텍스
@@ -44,7 +44,7 @@ t_table			*table();
 int			ft_atoi(char *str);
 
 
-unsigned long	get_time();
+int		get_time();
 
 
 void    create_philo();
