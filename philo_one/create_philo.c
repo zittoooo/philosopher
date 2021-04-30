@@ -19,7 +19,7 @@ void	*watch(void *phi)
 			// printf("%lu %ld\n", cur,  philo->last_eat);
 			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
 			msg(phi, DEAD, get_time() - table()->base_time);
-			// table()->dead = 1;
+			table()->dead = 1;
 			break ;
 		}
 	}
@@ -45,7 +45,7 @@ void	*run(void *phi)
 		else if (think(philo))
 			break ;
 	}
-	// printf("id : %d\n", philo->nbr);
+	printf("id : %d\n", philo->nbr);
 	pthread_join(monitor, NULL);
 	return (NULL);
 }
@@ -88,7 +88,7 @@ void check_dead(void)
 	while (42)
 	{
 		usleep(300);
-		if (table()->dead || table()->eat == table()->must_eat)
+		if (table()->dead || table()->eat == table()->num_philo)
 			break ;
 	}
 	i = -1;
