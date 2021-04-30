@@ -1,15 +1,15 @@
 #include "philo_two.h"
 
-t_philo		*philo(void)
+t_philos	*philos(void)
 {
-	static	t_philo philo;
+	static	t_philos philo;
 
 	return (&philo);
 }
 
 t_table		*table(void)
 {
-	static	t_table table;
+	static	t_table	table;
 
 	return (&table);
 }
@@ -21,8 +21,8 @@ int			ft_atoi(char *str)
 	int i;
 
 	i = 0;
-	sign = 1;
 	ret = 0;
+	sign = 1;
 	if (str[i] == '-')
 	{
 		sign = -1;
