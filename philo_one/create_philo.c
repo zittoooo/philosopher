@@ -66,6 +66,15 @@ void	create_philo(void)
 		philo[i].last_eat = get_time();
 		pthread_create(&philo[i].tid, NULL, run, &philo[i]);
 	}
+	while (42)
+	{
+		usleep(300);
+		if (table()->dead)
+			break ;
+	}
+	i = -1;
+	while (++i < table()->num_philo)
+		pthread_mutex_unlock(&table()->fork[i]);
 	i = -1;
 	while (++i < table()->num_philo)
 		pthread_join(philo[i].tid, NULL);

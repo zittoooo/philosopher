@@ -27,8 +27,12 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 int		eat(t_philos *philo)
 {
 	pthread_mutex_lock(&table()->fork[philo->fork1]);
+	if (table()->dead == 1)
+		return (END);
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	pthread_mutex_lock(&table()->fork[philo->fork2]);
+	if (table()->dead == 1)
+		return (END);
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	msg(philo, EAT, get_time() - table()->base_time);
 	philo->last_eat = get_time();
