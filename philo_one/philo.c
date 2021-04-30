@@ -3,13 +3,20 @@
 void	msg(t_philos *philo, int status, unsigned long timestamp)
 {
 	pthread_mutex_lock(&table()->m_msg);
-	if (table()->dead)
+	if (table()->dead || table()->num_philo == table()->eat)
 	{
 		pthread_mutex_unlock(&table()->m_msg);
 		return ;
 	}
 	if (status == EAT)
+	{
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
+		philo->eat++;
+		if (philo->eat == table()->must_eat)
+		{
+			table()->eat++;
+		}
+	}
 	else if (status == TAKEN)
 		printf("%ld %d has taken a fork\n", timestamp, philo->nbr);
 	else if (status == SLEEP)
@@ -31,7 +38,7 @@ int		eat(t_philos *philo)
 		return (END);
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	pthread_mutex_lock(&table()->fork[philo->fork2]);
-	if (table()->dead == 1)
+	if (table()->dead == 1 || table()->eat == table()->num_philo)
 		return (END);
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	msg(philo, EAT, get_time() - table()->base_time);
@@ -39,12 +46,12 @@ int		eat(t_philos *philo)
 	usleep(table()->time_to_eat * 1000);
 	pthread_mutex_unlock(&table()->fork[philo->fork1]);
 	pthread_mutex_unlock(&table()->fork[philo->fork2]);
-	philo->eat++;
-	if (philo->eat == table()->must_eat)
-	{
-		table()->eat++;
-		return (END);  // 먹어야 하는 만큼 먹었으면 스레드 끝내기
-	}
+	// if (philo->eat == table()->must_eat)
+	// {
+	// 	table()->eat++;
+	// 	table()->dead = 1;
+	// 	return (END);  // 먹어야 하는 만큼 먹었으면 스레드 끝내기
+	// }
 	return (ALIVE);
 }
 
@@ -52,8 +59,10 @@ int		sleep_philo(t_philos *philo)
 {
 	int cur;
 
-	if (table()->dead)
+	if (table()->dead || table()->eat == table()->num_philo)
+	{
 		return (END);
+	}
 	msg(philo, SLEEP, get_time() - table()->base_time);
 	cur = get_time();
 	while (get_time() - cur <= table()->time_to_sleep && !table()->dead)
@@ -63,8 +72,12 @@ int		sleep_philo(t_philos *philo)
 
 int		think(t_philos *philo)
 {
-	if (table()->dead)
+	if (table()->dead || table()->eat == table()->num_philo)
+	{
+		printf("%d\n", table()->dead);
+		printf("%d\n", table()->eat);
 		return (END);
+	}
 	msg(philo, THINK, get_time() - table()->base_time);
 	return (ALIVE);
 }

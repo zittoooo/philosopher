@@ -53,7 +53,7 @@ void				clean(void);
 void				create_philo(void);
 void				*run(void *phi);
 void				*watch(void	*phi);
-
+void 				check_dead(void);
 /*
 ** utils.c
 */

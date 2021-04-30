@@ -8,18 +8,22 @@ void	*watch(void *phi)
 	philo = (t_philos *)phi;
 	while (!table()->dead)
 	{
-		if (philo->eat == table()->must_eat)
+		if (table()->eat == table()->num_philo)
+		{
+			table()->dead = 1;
 			break ;
+		}
 		cur = get_time();
 		if ((cur - philo->last_eat) > table()->time_to_die)
 		{
 			// printf("%lu %ld\n", cur,  philo->last_eat);
 			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
 			msg(phi, DEAD, get_time() - table()->base_time);
-			table()->dead = 1;
+			// table()->dead = 1;
 			break ;
 		}
 	}
+	printf("id : %d\n", philo->nbr);
 	return (NULL);
 }
 
@@ -30,7 +34,7 @@ void	*run(void *phi)
 
 	philo = (t_philos *)phi;
 	if (philo->nbr % 2)
-		usleep(80);
+		usleep(100);
 	pthread_create(&monitor, NULL, watch, philo);
 	while (!table()->dead)
 	{
@@ -41,6 +45,7 @@ void	*run(void *phi)
 		else if (think(philo))
 			break ;
 	}
+	// printf("id : %d\n", philo->nbr);
 	pthread_join(monitor, NULL);
 	return (NULL);
 }
@@ -66,18 +71,27 @@ void	create_philo(void)
 		philo[i].last_eat = get_time();
 		pthread_create(&philo[i].tid, NULL, run, &philo[i]);
 	}
+	check_dead();
+	// printf("end\n");
+	i = -1;
+	while (++i < table()->num_philo)
+		pthread_join(philo[i].tid, NULL);
+	// printf("end\n" );
+	free(philo);
+	philo = 0;
+}
+
+void check_dead(void)
+{
+	int i;
+
 	while (42)
 	{
 		usleep(300);
-		if (table()->dead)
+		if (table()->dead || table()->eat == table()->must_eat)
 			break ;
 	}
 	i = -1;
 	while (++i < table()->num_philo)
 		pthread_mutex_unlock(&table()->fork[i]);
-	i = -1;
-	while (++i < table()->num_philo)
-		pthread_join(philo[i].tid, NULL);
-	free(philo);
-	philo = 0;
 }
