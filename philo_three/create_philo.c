@@ -6,19 +6,13 @@ void	*watch(void *phi)
 	t_philos	*philo;
 
 	philo = (t_philos *)phi;
-	while (!table()->dead)
+	while (1)
 	{
-		if (table()->eat == table()->num_philo)
-		{
-			table()->dead = 1;
-			break ;
-		}
 		cur = get_time();
 		if ((cur - philo->last_eat) > table()->time_to_die)
 		{
 			msg(phi, DEAD, get_time() - table()->base_time);
-			table()->dead = 1;
-			break ;
+			exit(1);
 		}
 	}
 	printf("id : %d\n", philo->nbr);
@@ -29,10 +23,11 @@ void	run(t_philos *philo)
 {
 	pthread_t	monitor;
 
+	// printf("%d\n", philo->nbr);
 	if (philo->nbr % 2)
-		usleep(100);
+		usleep(300);
 	pthread_create(&monitor, NULL, watch, philo);
-	while (!table()->dead)
+	while (1)
 	{
 		if (eat(philo))
 			break ;
@@ -42,5 +37,5 @@ void	run(t_philos *philo)
 			break ;
 	}
 	pthread_join(monitor, NULL);
-	return (NULL);
+	exit(0);
 }

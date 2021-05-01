@@ -7,6 +7,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # define EAT 1
 # define TAKEN 2
@@ -26,8 +27,6 @@ typedef struct		s_table
 	int				must_eat;
 
 	int				base_time;	// 기준 시간
-	int				eat;		// 다 먹은 철학자 수
-	int				dead;		// 철학자가 한명이라도 죽으면 1
 	sem_t	*fork;		// 철학자의 수만큼 만들 포크 뮤텍스
 	sem_t	*m_msg;		// 메세지가 꼬이지 않아야 해서 필요한 뮤텍스
 }					t_table;
@@ -45,7 +44,7 @@ typedef struct		s_philo
 */
 int					get_time();
 void				clean(void);
-
+void				monitor(t_philos *phi);
 /*
 ** create_philo.c
 */
