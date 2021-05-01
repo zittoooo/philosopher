@@ -40,6 +40,7 @@ int		main(int argc, char *argv[])
 {
 	if (!(argc == 5 || argc == 6) || parse(argv))
 		return (printf("input Error\n"));
+	
 	init_sema();
 	create_philo();
 	clean();
