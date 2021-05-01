@@ -57,6 +57,7 @@ void	create_philo(void)
 
 	i = -1;
 	philo = philos();
+	printf("asd: %lu\n", sizeof(pthread_t));
 	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
 		return ;
 	while (++i < table()->num_philo)
