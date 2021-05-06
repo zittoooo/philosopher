@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:48:56 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/06 13:48:58 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
 void	msg(t_philos *philo, int status, unsigned long timestamp)
@@ -13,9 +25,7 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 		printf("%ld %d is eating\n", timestamp, philo->nbr);
 		philo->eat++;
 		if (philo->eat == table()->must_eat)
-		{
 			table()->eat++;
-		}
 	}
 	else if (status == TAKEN)
 		printf("%ld %d has taken a fork\n", timestamp, philo->nbr);
@@ -46,12 +56,6 @@ int		eat(t_philos *philo)
 	usleep(table()->time_to_eat * 1000);
 	pthread_mutex_unlock(&table()->fork[philo->fork1]);
 	pthread_mutex_unlock(&table()->fork[philo->fork2]);
-	// if (philo->eat == table()->must_eat)
-	// {
-	// 	table()->eat++;
-	// 	table()->dead = 1;
-	// 	return (END);  // 먹어야 하는 만큼 먹었으면 스레드 끝내기
-	// }
 	return (ALIVE);
 }
 

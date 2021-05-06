@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:49:45 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/06 13:49:49 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_three.h"
 
 void	msg(t_philos *philo, int status, unsigned long timestamp)
 {
-	// printf("id: %d, status: %d\n", philo->nbr, status);
 	sem_wait(table()->m_msg);
 	if (status == EAT)
 	{

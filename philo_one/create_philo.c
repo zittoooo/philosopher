@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_philo.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:48:47 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/06 13:48:49 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_one.h"
 
 void	*watch(void *phi)
@@ -16,8 +28,6 @@ void	*watch(void *phi)
 		cur = get_time();
 		if ((cur - philo->last_eat) > table()->time_to_die)
 		{
-			// printf("%lu %ld\n", cur,  philo->last_eat);
-			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
 			msg(phi, DEAD, get_time() - table()->base_time);
 			table()->dead = 1;
 			break ;
@@ -73,16 +83,13 @@ void	create_philo(void)
 		pthread_create(&philo[i].tid, NULL, run, &philo[i]);
 	}
 	check_dead();
-	// printf("end\n");
 	i = -1;
 	while (++i < table()->num_philo)
 		pthread_join(philo[i].tid, NULL);
-	// printf("end\n" );
 	free(philo);
-	philo = 0;
 }
 
-void check_dead(void)
+void	check_dead(void)
 {
 	int i;
 

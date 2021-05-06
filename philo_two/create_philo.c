@@ -16,8 +16,6 @@ void	*watch(void *phi)
 		cur = get_time();
 		if ((cur - philo->last_eat) > table()->time_to_die)
 		{
-			// printf("%lu %ld\n", cur,  philo->last_eat);
-			// printf("id : %d  %lu\n", philo->nbr, (cur - philo->last_eat));
 			msg(phi, DEAD, get_time() - table()->base_time);
 			table()->dead = 1;
 			break ;
@@ -45,7 +43,6 @@ void	*run(void *phi)
 		else if (think(philo))
 			break ;
 	}
-	// printf("id : %d\n", philo->nbr);
 	pthread_join(monitor, NULL);
 	return (NULL);
 }
@@ -74,7 +71,7 @@ void	create_philo(void)
 	philo = 0;
 }
 
-void check_dead(void)
+void	check_dead(void)
 {
 	int i;
 

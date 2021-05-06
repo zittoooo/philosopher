@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_philo.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/06 13:49:36 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/06 13:49:37 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_three.h"
 
 void	*watch(void *phi)
@@ -23,7 +35,6 @@ void	run(t_philos *philo)
 {
 	pthread_t	monitor;
 
-	// printf("%d\n", philo->nbr);
 	if (philo->nbr % 2)
 		usleep(300);
 	pthread_create(&monitor, NULL, watch, philo);
