@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:48:47 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:48:49 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 14:21:56 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	*watch(void *phi)
 			break ;
 		}
 	}
-	printf("id : %d\n", philo->nbr);
 	return (NULL);
 }
 
@@ -55,7 +54,6 @@ void	*run(void *phi)
 		else if (think(philo))
 			break ;
 	}
-	printf("id : %d\n", philo->nbr);
 	pthread_join(monitor, NULL);
 	return (NULL);
 }
@@ -67,7 +65,6 @@ void	create_philo(void)
 
 	i = -1;
 	philo = philos();
-	printf("asd: %lu\n", sizeof(pthread_t));
 	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
 		return ;
 	while (++i < table()->num_philo)

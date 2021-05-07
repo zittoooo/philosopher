@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:48:56 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:48:58 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 14:19:48 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int		think(t_philos *philo)
 {
 	if (table()->dead || table()->eat == table()->num_philo)
 	{
-		printf("%d\n", table()->dead);
-		printf("%d\n", table()->eat);
 		return (END);
 	}
 	msg(philo, THINK, get_time() - table()->base_time);
