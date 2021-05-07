@@ -59,6 +59,7 @@ void 				check_dead(void);
 t_philos			*philos();
 t_table				*table();
 int					ft_atoi(char *str);
+void				philo_eat_msg(t_philos *philo, unsigned long timestamp);
 
 /*
 ** philo.c
@@ -67,5 +68,5 @@ void				msg(t_philos *philo, int status, unsigned long timestamp);
 int					eat(t_philos *philo);
 int					sleep_philo(t_philos *philo);
 int					think(t_philos *philo);
-
+void				post_sem(void);
 #endif

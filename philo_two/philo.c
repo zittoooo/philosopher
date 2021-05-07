@@ -5,18 +5,11 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 	sem_wait(table()->m_msg);
 	if (table()->dead || table()->num_philo == table()->eat)
 	{
-		sem_post(table()->m_msg);
+		post_sem();
 		return ;
 	}
 	if (status == EAT)
-	{
-		printf("%ld %d is eating\n", timestamp, philo->nbr);
-		philo->eat++;
-		if (philo->eat == table()->must_eat)
-		{
-			table()->eat++;
-		}
-	}
+		philo_eat_msg(philo, timestamp);
 	else if (status == TAKEN)
 		printf("%ld %d has taken a fork\n", timestamp, philo->nbr);
 	else if (status == SLEEP)
@@ -31,11 +24,22 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 	sem_post(table()->m_msg);
 }
 
+void	post_sem(void)
+{
+	sem_post(table()->fork);
+	sem_post(table()->fork);		
+	sem_post(table()->m_msg);
+	sem_post(table()->m_msg);
+	return ;
+}
+
 int		eat(t_philos *philo)
 {
 	sem_wait(table()->fork);
 	if (table()->dead == 1)
+	{
 		return (END);
+	}
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	sem_wait(table()->fork);
 	if (table()->dead == 1 || table()->eat == table()->num_philo)
@@ -68,8 +72,6 @@ int		think(t_philos *philo)
 {
 	if (table()->dead || table()->eat == table()->num_philo)
 	{
-		printf("%d\n", table()->dead);
-		printf("%d\n", table()->eat);
 		return (END);
 	}
 	msg(philo, THINK, get_time() - table()->base_time);

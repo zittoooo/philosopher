@@ -21,7 +21,6 @@ void	*watch(void *phi)
 			break ;
 		}
 	}
-	printf("id : %d\n", philo->nbr);
 	return (NULL);
 }
 

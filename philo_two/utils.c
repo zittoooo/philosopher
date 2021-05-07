@@ -37,3 +37,12 @@ int			ft_atoi(char *str)
 	}
 	return (ret * sign);
 }
+
+
+void	philo_eat_msg(t_philos *philo, unsigned long timestamp)
+{
+	printf("%ld %d is eating\n", timestamp, philo->nbr);
+	philo->eat++;
+	if (philo->eat == table()->must_eat)
+		table()->eat++;
+}
