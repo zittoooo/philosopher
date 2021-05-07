@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:45 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:49:49 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 15:40:35 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 		philo->eat++;
 		if (philo->eat == table()->must_eat)
 		{
-			printf("%d\n", philo->nbr);
 			sem_post(table()->m_msg);
 			sem_post(table()->fork);
 			sem_post(table()->fork);

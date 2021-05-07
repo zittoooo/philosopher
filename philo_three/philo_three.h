@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:42 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:50:31 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 15:53:14 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ typedef struct		s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
-
 	int				base_time;
-	sem_t	*fork;
-	sem_t	*m_msg;
+	sem_t			*fork;
+	sem_t			*m_msg;
 }					t_table;
 
 typedef struct		s_philo
@@ -64,7 +63,7 @@ void				monitor(t_philos *phi);
 void				create_philo(void);
 void				run(t_philos *philo);
 void				*watch(void	*phi);
-void 				check_dead(void);
+void				check_dead(void);
 
 /*
 ** utils.c

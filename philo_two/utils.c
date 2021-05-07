@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/07 15:45:52 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/07 15:46:58 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_two.h"
 
 t_philos	*philos(void)
@@ -38,8 +50,7 @@ int			ft_atoi(char *str)
 	return (ret * sign);
 }
 
-
-void	philo_eat_msg(t_philos *philo, unsigned long timestamp)
+void		philo_eat_msg(t_philos *philo, unsigned long timestamp)
 {
 	printf("%ld %d is eating\n", timestamp, philo->nbr);
 	philo->eat++;

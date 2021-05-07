@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:05 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:49:05 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 15:53:45 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				clean(void);
 void				create_philo(void);
 void				*run(void *phi);
 void				*watch(void	*phi);
-void 				check_dead(void);
+void				check_dead(void);
 
 /*
 ** utils.c

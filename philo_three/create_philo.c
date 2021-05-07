@@ -6,11 +6,31 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:36 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/06 13:49:37 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/07 15:51:58 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
+
+void	create_philo(void)
+{
+	int			i;
+	t_philos	*philo;
+
+	i = -1;
+	if (!(philo = malloc(sizeof(t_philos) * table()->num_philo)))
+		return ;
+	while (++i < table()->num_philo)
+	{
+		philo[i].nbr = i + 1;
+		philo[i].eat = 0;
+		philo[i].last_eat = get_time();
+		philo[i].pid = fork();
+		if (philo[i].pid == 0)
+			run(&philo[i]);
+	}
+	monitor(philo);
+}
 
 void	*watch(void *phi)
 {
@@ -27,7 +47,6 @@ void	*watch(void *phi)
 			exit(1);
 		}
 	}
-	printf("id : %d\n", philo->nbr);
 	return (NULL);
 }
 
@@ -49,4 +68,28 @@ void	run(t_philos *philo)
 	}
 	pthread_join(monitor, NULL);
 	exit(0);
+}
+
+void	monitor(t_philos *phi)
+{
+	int eat;
+	int status;
+
+	eat = 0;
+	while (1)
+	{
+		if (waitpid(-1, &status, WNOHANG) <= 0)
+			continue ;
+		if (WEXITSTATUS(status) == 0)
+		{
+			eat++;
+			if (eat == table()->num_philo)
+				return ;
+		}
+		else if (WEXITSTATUS(status) == 1)
+		{
+			pkill(phi);
+			return ;
+		}
+	}
 }

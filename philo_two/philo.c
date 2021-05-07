@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/07 15:46:10 by jiholee           #+#    #+#             */
+/*   Updated: 2021/05/07 15:47:15 by jiholee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_two.h"
 
 void	msg(t_philos *philo, int status, unsigned long timestamp)
@@ -27,7 +39,7 @@ void	msg(t_philos *philo, int status, unsigned long timestamp)
 void	post_sem(void)
 {
 	sem_post(table()->fork);
-	sem_post(table()->fork);		
+	sem_post(table()->fork);
 	sem_post(table()->m_msg);
 	sem_post(table()->m_msg);
 	return ;
