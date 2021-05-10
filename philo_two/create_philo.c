@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 15:46:04 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/07 15:46:04 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:30:37 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	check_dead(void)
 		if (table()->dead || table()->eat == table()->num_philo)
 			break ;
 	}
+	sem_post(table()->fork);
 	sem_close(table()->fork);
 	sem_close(table()->m_msg);
 	sem_unlink("fork");

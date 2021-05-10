@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 15:46:01 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/07 15:46:02 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:28:52 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		main(int argc, char *argv[])
 void	clean(void)
 {
 	sem_close(table()->fork);
-	sem_close(table()->m_msg);
+	sem_close(table()->fork);
 	sem_unlink("fork");
 	sem_unlink("msg");
 }

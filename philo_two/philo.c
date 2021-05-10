@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 15:46:10 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/07 15:47:15 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:35:21 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,17 @@ int		eat(t_philos *philo)
 	sem_wait(table()->fork);
 	if (table()->dead == 1)
 	{
+		sem_post(table()->fork);
+		sem_post(table()->fork);
 		return (END);
 	}
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	sem_wait(table()->fork);
 	if (table()->dead == 1 || table()->eat == table()->num_philo)
+	{
+		sem_post(table()->fork);
 		return (END);
+	}
 	msg(philo, TAKEN, get_time() - table()->base_time);
 	msg(philo, EAT, get_time() - table()->base_time);
 	philo->last_eat = get_time();
