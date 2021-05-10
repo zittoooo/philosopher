@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:42 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/07 15:53:14 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:49:13 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_philo
 int					get_time();
 void				clean(void);
 void				monitor(t_philos *phi);
+void				pkill(t_philos *phi);
 
 /*
 ** create_philo.c

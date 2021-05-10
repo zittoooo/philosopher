@@ -6,7 +6,7 @@
 /*   By: jiholee <jiholee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 13:49:36 by jiholee           #+#    #+#             */
-/*   Updated: 2021/05/10 16:20:43 by jiholee          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:49:30 by jiholee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	monitor(t_philos *phi)
 		}
 		else if (WEXITSTATUS(status) == 1)
 		{
-			kill((pid_t)phi, SIGINT);
+			pkill(phi);
 			return ;
 		}
 	}
