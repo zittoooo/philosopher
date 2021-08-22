@@ -70,7 +70,7 @@ int		sleep_philo(t_philos *philo)
 	msg(philo, SLEEP, get_time() - table()->base_time);
 	cur = get_time();
 	while (get_time() - cur <= table()->time_to_sleep && !table()->dead)
-		usleep(1);
+		usleep(50);
 	return (ALIVE);
 }
 
@@ -81,5 +81,6 @@ int		think(t_philos *philo)
 		return (END);
 	}
 	msg(philo, THINK, get_time() - table()->base_time);
+	usleep(200);
 	return (ALIVE);
 }
