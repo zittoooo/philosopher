@@ -7,18 +7,19 @@
 
 * 이 프로젝트는 기본적인 프로세스 스레딩, mutex, semaphore, shared memory을 배웁니다.(In this project, you will learn the basics of threading a process and how to work on the same memory space. You will learn how to make threads. You will discover the mutex, semaphore and shared memory.)
 
-* philo_one
+### philo_one
 1. 철학자는 쓰레드이다.
 2. 원탁에 앉아있고, 양 옆에 포크가 있다.
 
-* philo_two
+### philo_two
 1. 철학자는 쓰레드이다.
 2. 원탁에 앉아있고, 테이블 중앙에 포크가 있다.
 
-* philo_three
+### philo_three
 1. 철학자는 프로세스이다.
 2. 원탁에 앉아있고, 테이블 중앙에 포크가 있다.
 
+### 조건
 * 철학자는 정해진 시간(time_to_die) 안에 먹지 않으면 죽는다.
 * 철학자 한 명이 죽으면 프로그램을 종료한다. (죽는 시간 기준10ms 안에 종료 메세지가 떠야 한다.)
 * 철학자는 포크 2개를 집어야 먹을 수 있다.
