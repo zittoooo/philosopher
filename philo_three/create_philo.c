@@ -55,7 +55,7 @@ void	run(t_philos *philo)
 	pthread_t	monitor;
 
 	if (philo->nbr % 2)
-		usleep(300);
+		usleep(table()->time_to_eat * 100);
 	pthread_create(&monitor, NULL, watch, philo);
 	while (1)
 	{

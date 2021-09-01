@@ -69,5 +69,6 @@ int		sleep_philo(t_philos *philo)
 int		think(t_philos *philo)
 {
 	msg(philo, THINK, get_time() - table()->base_time);
+	usleep(200);
 	return (ALIVE);
 }
