@@ -2,7 +2,9 @@
 
 ## 식사하는 철학자 문제
 
-![식사하는철학자](https://ww.namu.la/s/24ad59b9924a16433407eae0c36a52de73c04a5a0f9014414a473ce5b0390efdb545e8e89270c6d36426654001d1672c78b34590281f978235da7df6ea03e0b3735ea01447f421b8a08bfaa2cbaef4afaa6f4bfe310ef708e9f1abdc24dc178694658eb0688c61901162492ea779f653)
+
+<img src="https://user-images.githubusercontent.com/18901638/135184452-1937ae50-6e90-4ca8-86e9-c0af19da1f99.png" width="40%">
+<!-- ![식사하는철학자]![깃헙-식사하는철학자](https://user-images.githubusercontent.com/18901638/135184452-1937ae50-6e90-4ca8-86e9-c0af19da1f99.png) -->
 출처 : wiki 
 
 * 이 프로젝트는 기본적인 프로세스 스레딩, mutex, semaphore, shared memory을 배웁니다.(In this project, you will learn the basics of threading a process and how to work on the same memory space. You will learn how to make threads. You will discover the mutex, semaphore and shared memory.)
